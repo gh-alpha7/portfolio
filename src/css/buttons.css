@@ -1,0 +1,27 @@
+.flat-button{
+    color:#08fdd8;
+    font-size: 1vw;
+    letter-spacing: 4px;
+    font-family: "Open Sans", sans-serif;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 0.1vw solid #08fdd8;
+    margin-top: 20px;
+
+}
+
+.flat-button:hover{
+  background-color: #08fdd8;
+  color: #123;
+  cursor: pointer;
+}
+
+.reset_button{
+  margin-left: 30px;
+}
+
+.button{
+	/* height: 10vh; */
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,9 @@
+.atari{
+    height: 60vh;
+    margin: 10px;
+}
+
+canvas{
+  width: 100%;
+  height: 100%;
+}

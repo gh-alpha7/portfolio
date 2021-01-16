@@ -1,0 +1,38 @@
+.menu{
+  width: 4%;
+  height: 100vh;
+  background-color: #181818;
+}
+
+.logo_div{
+  background: #000;
+}
+
+.nav_logo{
+  margin: 6px;
+  width: 70%;
+}
+
+.icon_div{
+  position: absolute;
+  top: 50%;
+}
+
+.icon-cost:before{
+  font-size: 2vw;
+  margin: 40%;
+  color: #08fdd8;
+}
+
+.contact{
+  position: absolute;
+  bottom: 1%;
+  left: 1.5%;
+}
+
+.contact-a{
+  color: #666;
+  display: block !important;
+  margin-bottom: 10px;
+  font-size: 1vw;  
+}

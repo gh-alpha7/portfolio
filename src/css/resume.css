@@ -1,0 +1,63 @@
+.resume{
+  height: 70vh;
+  background-color: #222;
+}
+
+#tsparticles{
+  height : 100% !important;
+}
+
+.resume-div{
+  width : 40%;
+  position: fixed;
+  z-index: 1;
+  left: 7%;
+  top:40%;
+}
+
+.resume-header{
+  font-family: Arial;
+  color: #08fdd8;
+  font-weight: normal;
+  line-height: 4vw;
+  font-size: 4vw;
+  font-weight: bold;
+}
+
+.resume-ch{
+
+}
+
+.resume-content{
+  line-height: 1vw;
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 200;
+  font-size: 1vw;
+
+}
+
+.resume-header:hover{
+    animation: rubberBand 1s;
+}
+
+@keyframes rubberBand{
+    0%{
+        transform: scale3d(1,1,1);
+    }
+    35%{
+        transform: scale3d(1.05,.75,1);
+    }
+    45%{
+        transform: scale3d(.95,1,1);
+    }
+    60%{
+        transform: scale3d(1.01,.8,1);
+    }
+    75%{
+        transform: scale3d(1.001,.95,1);
+    }
+    100%{
+        transform: scale3d(1,1,1);
+    }
+}
