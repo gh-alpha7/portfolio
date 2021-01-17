@@ -6,7 +6,7 @@ import Buttons from '../Game/Buttons';
 
 class Game extends React.Component {
   filledClick = (rect) =>{
-    console.log("inside filled", rect)
+    // console.log("inside filled", rect)
     this.props.selected(rect);
   }
 

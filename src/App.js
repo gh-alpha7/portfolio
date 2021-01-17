@@ -12,7 +12,7 @@ class App extends React.Component {
   }
   selected=(comp)=>{
     this.setState({comp})
-    console.log("inside selected")
+    // console.log("inside selected")
   }
 
   render(){

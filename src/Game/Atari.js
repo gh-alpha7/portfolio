@@ -21,7 +21,7 @@ class Atari extends React.Component {
     this.width = canvas.width;
     this.height = canvas.height;
     this.reset()
-    console.log(canvas.width, canvas.height)
+    // console.log(canvas.width, canvas.height)
     // ctx.beginPath();
   }
 
@@ -38,7 +38,7 @@ class Atari extends React.Component {
   }
 
   drawRect = () => {
-    console.log("drawRect")
+    // console.log("drawRect")
     let ctx = this.ctx;
     let col = ["INTERESTS", "EDUCATION", "PROJECTS", "SKILLS", "EXPERIENCE"]
     for (var i = 0; i < 4; i++) {
@@ -97,7 +97,7 @@ class Atari extends React.Component {
   }
 
   handleKeyDown = (e) =>{
-    console.log(e.keyCode)
+    // console.log(e.keyCode)
     let x = 5;
     if(e.keyCode == "37"){
       if(this.state.x_axis < 16) return;
@@ -132,7 +132,7 @@ class Atari extends React.Component {
     else if(e.keyCode == "13"){
       if(this.state.started == false){
         this.setState({started:true})
-        this.interval = setInterval(this.play, 15);
+        this.interval = setInterval(this.play, 8);
       }
     }
   }
@@ -141,12 +141,12 @@ class Atari extends React.Component {
     // console.log(this.state.ball_y, this.state.y_axis, this.state.ball_x-4, this.state.ball_x + 76)
     this.rect.map((d, ind)=>{
       let axis = d.axis, filled = d.filled;
-      if(this.state.ball_x >= d.axis[0] && this.state.ball_x <= d.axis[0] + 79 && this.state.ball_y <= d.axis[1] + 31 && this.state.ball_y >= d.axis[1]){
+      if(this.state.ball_x+10 >= d.axis[0] && this.state.ball_x <= d.axis[0] + 79 && this.state.ball_y <= d.axis[1] + 31 && this.state.ball_y >= d.axis[1]){
         this.ctx.clearRect(d.axis[0]-5, d.axis[1]-5, 78+8, 30+8);
         this.rect.splice(ind, 1);
         if(this.state.ball_y == d.axis[1])                  //top
           this.move("x", this.state.prev_yv * -1);
-        if(this.state.ball_x == d.axis[0])                  //left
+        if(this.state.ball_x+10 == d.axis[0])                  //left
           this.move(this.state.prev_xv * -1, 'x');
         if(this.state.ball_x == d.axis[0] + 79)             //right
           this.move(this.state.prev_xv * -1, 'x');

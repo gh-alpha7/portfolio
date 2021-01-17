@@ -11,7 +11,7 @@ function Intro() {
         <code className="tab_code inline_code">play_around(<a className="link" href=""></a>);</code>
         <code className="inline_code comment">//press enter</code>
         <code>else</code>
-        <code className="tab_code">download_resume(<a className="link" href="https://github.com/subh1685/tictac/raw/master/Subham's%20Resume%20wal.pdf">download</a>);</code>
+        <code className="tab_code">download_resume(<a className="link" href="https://github.com/gh-alpha7/tictac/raw/master/Subham's%20Resume.pdf">download</a>);</code>
 
         <Particles
           params={data} />

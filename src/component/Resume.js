@@ -13,8 +13,7 @@ class Resume extends React.Component {
     super(props);
   }
   render(){
-    console.log(this.props.comp, "render")
-    let component = this.props.comp == "EXPERIENCE"?<Experience/>: this.props.comp == "EDUCATION"? <Education/>: this.props.comp == "PROJECT"? <Project/>: this.props.comp == "INTERESTS"? <Interests/>: this.props.comp == "SKILLS"? <Skills/>: null;
+    let component = this.props.comp == "EXPERIENCE"?<Experience/>: this.props.comp == "EDUCATION"? <Education/>: this.props.comp == "PROJECTS"? <Project/>: this.props.comp == "INTERESTS"? <Interests/>: this.props.comp == "SKILLS"? <Skills/>: null;
     return (
       <div className="resume">
       <div className="resume-div">
