@@ -100,6 +100,7 @@ class Atari extends React.Component {
   handleKeyDown = (e) =>{
     // console.log(e.keyCode)
     let x = 5;
+    console.log(e.keyCode)
     if(e.keyCode == "37"){
       if(this.state.x_axis < 16) return;
       let x_axis = this.state.x_axis;
@@ -163,10 +164,10 @@ class Atari extends React.Component {
 
     })
     if(this.state.ball_x <= this.bound.left_wall) this.move(this.state.prev_xv * -1, 'x');
-    if(this.state.ball_y <= this.bound.top_wall) this.move('x', this.state.prev_yv * -1);
-    if(this.state.ball_x >= this.bound.right_wall) this.move(this.state.prev_xv * -1, 'x');
-    if(this.state.ball_y >= 390 && (this.state.ball_x >= this.state.x_axis-4 && this.state.ball_x <= this.state.x_axis + 76)) this.move('x',this.state.prev_yv * -1)
-    if(this.state.ball_y >= this.bound.down_wall) this.resetBoard();
+    else if(this.state.ball_y <= this.bound.top_wall) this.move('x', this.state.prev_yv * -1);
+    else if(this.state.ball_x >= this.bound.right_wall) this.move(this.state.prev_xv * -1, 'x');
+    else if(this.state.ball_y >= 390 && (this.state.ball_x >= this.state.x_axis-4 && this.state.ball_x <= this.state.x_axis + 76)) this.move('x',this.state.prev_yv * -1)
+    else if(this.state.ball_y >= this.bound.down_wall) this.resetBoard();
   }
 
   resetBoard= () =>{
