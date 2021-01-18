@@ -82,17 +82,18 @@ class Atari extends React.Component {
 
   drawBall=()=>{
     let ctx = this.ctx;
-    ctx.clearRect(this.state.prev_ball_x-10, this.state.prev_ball_y-10, 20, 20);
+    // ctx.clearRect(this.state.prev_ball_x-10, this.state.prev_ball_y-10, 20, 20);
+    ctx.fillStyle = "#222";
+    ctx.beginPath();
+    ctx.arc(this.state.prev_ball_x, this.state.prev_ball_y, 8.7, 0, Math.PI * 2, false);
+    ctx.fill()
+    ctx.fill()
+
     ctx.strokeStyle = "#08fdd8";
     ctx.fillStyle = "#08fdd8";
 
     ctx.beginPath();
-    // ctx.imageSmoothingQuality = "high"
-    // ctx.lineWidth = 0.5;
     ctx.arc(this.state.ball_x, this.state.ball_y, 8, 0, Math.PI * 2, false);
-    // ctx.arc(this.state.ball_x, this.state.ball_y, 5, 0, Math.PI * 2, true);
-    // ctx.imageSmoothingEnabled = false;
-    // ctx.stroke();
     ctx.fill()
   }
 
@@ -132,7 +133,7 @@ class Atari extends React.Component {
     else if(e.keyCode == "13"){
       if(this.state.started == false){
         this.setState({started:true})
-        this.interval = setInterval(this.play, 8);
+        this.interval = setInterval(this.play, 9);
       }
     }
   }
@@ -142,7 +143,8 @@ class Atari extends React.Component {
     this.rect.map((d, ind)=>{
       let axis = d.axis, filled = d.filled;
       if(this.state.ball_x+10 >= d.axis[0] && this.state.ball_x <= d.axis[0] + 79 && this.state.ball_y <= d.axis[1] + 31 && this.state.ball_y >= d.axis[1]){
-        this.ctx.clearRect(d.axis[0]-5, d.axis[1]-5, 78+8, 30+8);
+        this.ctx.clearRect(d.axis[0]-5, d.axis[1]-4, 78+8, 30+8);
+
         this.rect.splice(ind, 1);
         if(this.state.ball_y == d.axis[1])                  //top
           this.move("x", this.state.prev_yv * -1);
@@ -164,7 +166,7 @@ class Atari extends React.Component {
     if(this.state.ball_y <= this.bound.top_wall) this.move('x', this.state.prev_yv * -1);
     if(this.state.ball_x >= this.bound.right_wall) this.move(this.state.prev_xv * -1, 'x');
     if(this.state.ball_y >= 390 && (this.state.ball_x >= this.state.x_axis-4 && this.state.ball_x <= this.state.x_axis + 76)) this.move('x',this.state.prev_yv * -1)
-    if(this.state.ball_y >= this.bound.down_wall) this.reset();
+    if(this.state.ball_y >= this.bound.down_wall) this.resetBoard();
   }
 
   resetBoard= () =>{
