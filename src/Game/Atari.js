@@ -85,11 +85,9 @@ class Atari extends React.Component {
     // ctx.clearRect(this.state.prev_ball_x-10, this.state.prev_ball_y-10, 20, 20);
     ctx.fillStyle = "#222";
     ctx.beginPath();
-    ctx.arc(this.state.prev_ball_x, this.state.prev_ball_y, 8.7, 0, Math.PI * 2, false);
+    ctx.arc(this.state.prev_ball_x, this.state.prev_ball_y, 8.7, 0, Math.PI * 2, true);
     ctx.fill()
     ctx.fill()
-
-    ctx.strokeStyle = "#08fdd8";
     ctx.fillStyle = "#08fdd8";
 
     ctx.beginPath();
@@ -134,39 +132,42 @@ class Atari extends React.Component {
     else if(e.keyCode == "13"){
       if(this.state.started == false){
         this.setState({started:true})
-        this.interval = setInterval(this.play, 9);
+        this.interval = setInterval(this.play, 10);
       }
     }
   }
 
   collission = () =>{
     // console.log(this.state.ball_y, this.state.y_axis, this.state.ball_x-4, this.state.ball_x + 76)
-    this.rect.map((d, ind)=>{
-      let axis = d.axis, filled = d.filled;
-      if(this.state.ball_x+10 >= d.axis[0] && this.state.ball_x <= d.axis[0] + 79 && this.state.ball_y <= d.axis[1] + 31 && this.state.ball_y >= d.axis[1]){
-        this.ctx.clearRect(d.axis[0]-5, d.axis[1]-4, 78+8, 30+8);
+    if(this.state.ball_y >= 10 && this.state.ball_y <= 220 && this.state.ball_x >= 20 && this.state.ball_x <= 420){
+      this.rect.map((d, ind)=>{
+        let axis = d.axis, filled = d.filled;
+        if(this.state.ball_x+10 >= d.axis[0] && this.state.ball_x <= d.axis[0] + 79 && this.state.ball_y <= d.axis[1] + 31 && this.state.ball_y >= d.axis[1]){
+          this.ctx.clearRect(d.axis[0]-5, d.axis[1]-4, 78+8, 30+8);
 
-        this.rect.splice(ind, 1);
-        if(this.state.ball_y == d.axis[1])                  //top
-          this.move("x", this.state.prev_yv * -1);
-        if(this.state.ball_x+10 == d.axis[0])                  //left
-          this.move(this.state.prev_xv * -1, 'x');
-        if(this.state.ball_x == d.axis[0] + 79)             //right
-          this.move(this.state.prev_xv * -1, 'x');
-        if(this.state.ball_y == d.axis[1] + 31)             //bottom
-          this.move("x", this.state.prev_yv * -1);
-        if(d.filled){
-          this.props.callback(d.filled);
-          this.resetBoard();
+          this.rect.splice(ind, 1);
+          if(this.state.ball_y == d.axis[1])                  //top
+            this.move("x", this.state.prev_yv * -1);
+          if(this.state.ball_x+10 == d.axis[0])                  //left
+            this.move(this.state.prev_xv * -1, 'x');
+          if(this.state.ball_x == d.axis[0] + 79)             //right
+            this.move(this.state.prev_xv * -1, 'x');
+          if(this.state.ball_y == d.axis[1] + 31)             //bottom
+            this.move("x", this.state.prev_yv * -1);
+          if(d.filled){
+            this.props.callback(d.filled);
+            this.resetBoard();
+          }
+
         }
 
-      }
-
-    })
-    if(this.state.ball_x <= this.bound.left_wall) this.move(this.state.prev_xv * -1, 'x');
+      })
+    }
+    else if(this.state.ball_x <= this.bound.left_wall) this.move(this.state.prev_xv * -1, 'x');
     else if(this.state.ball_y <= this.bound.top_wall) this.move('x', this.state.prev_yv * -1);
     else if(this.state.ball_x >= this.bound.right_wall) this.move(this.state.prev_xv * -1, 'x');
-    else if(this.state.ball_y >= 390 && (this.state.ball_x >= this.state.x_axis-4 && this.state.ball_x <= this.state.x_axis + 76)) this.move('x',this.state.prev_yv * -1)
+    else if(this.state.ball_y == 390 && (this.state.ball_x >= this.state.x_axis-4 && this.state.ball_x <= this.state.x_axis + 76)) this.move('x',this.state.prev_yv * -1)
+    else if(this.state.ball_y > 390 && (this.state.ball_x >= this.state.x_axis-8 && this.state.ball_x <= this.state.x_axis + 80)) this.move(this.state.prev_xv*-1,'x')
     else if(this.state.ball_y >= this.bound.down_wall) this.resetBoard();
   }
 
