@@ -176,11 +176,11 @@ class Atari extends React.Component {
     let ctx = this.ctx;
     ctx.clearRect(this.state.prev_ball_x-10, this.state.prev_ball_y-10, 20, 20);
     ctx.clearRect(0, 300, this.bound.right_wall, this.bound.down_wall);
-    setTimeout(()=>{
+    // setTimeout(()=>{
       this.setState(this.original_state);
       this.drawBoard();
       this.drawBall();
-    }, 200)
+    // }, 500)
   }
 
   play = () => {
