@@ -9,7 +9,6 @@ function Board(height, width){
   this.length = 90;
   this.width = 15;
 
-
   this.move = (left) =>{
     this.x += left * this.vel;
     // console.log(this.x, this.y)

@@ -1,12 +1,12 @@
 // import p5 from "react-p5";
 import SingleRect from './SingleRect'
-function Rectangle(){
+function Rectangle(width, height){
   this.row = 4;
   this.col = 5;
   this.left = 10;
   this.top = 10;
-  this.width = 40;
-  this.length = 140;
+  this.width = height/12;
+  this.length = width/5;
   this.rect_text = [{index: [0,0]}, {index: [1,2]}, {index: [1,4]}, {index: [2,3]}, {index: [3,1]}];
   this.rect_ = [];
   this.vis = 0;
@@ -35,7 +35,7 @@ function Rectangle(){
 
   this.show = (p5) => {
     this.rect_.map(d=>{
-      let rect = new SingleRect(d);
+      let rect = new SingleRect(width, height, d);
       rect.show(p5);
     })
   }

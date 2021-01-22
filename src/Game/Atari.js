@@ -23,22 +23,38 @@ class Atari extends React.Component {
   componentDidMount() {
     this.width = document.getElementById('atari').clientWidth;
     this.height = document.getElementById('atari').clientHeight;
+    console.log(this.width, this.height)
     this.right_wall = this.width - 10;
     this.down_wall = this.height;
   }
 
   setup = (p5, canvasParentRef) => {
     p5.createCanvas(this.width, this.height).parent(canvasParentRef);
-    this.ball = new Ball(this.height, this.width, p5.ellipse);
-    this.board = new Board(this.height, this.width, p5.ellipse);
-    this.rect = new Rectangle();
+    this.ball = new Ball(this.height, this.width);
+    this.board = new Board(this.height, this.width);
+    this.rect = new Rectangle(this.width, this.height);
     this.rect.createBrick();
 
     p5.frameRate(this.frameRate)
   };
 
+  resizePix = () =>{
+    this.board.default_x = this.width/2 - 45;
+    this.board.default_y = this.height - 20;
+    this.board.x = this.width/2 - 45;
+    this.board.y = this.height - 20;
+    this.ball.default_x = this.width/2;
+    this.ball.default_y = this.height - 30;
+    this.ball.x = this.width/2;
+    this.ball.y = this.height - 30;
+    this.rect.width = this.height/12;
+    this.rect.length = this.width/5;
+  }
+
   draw = (p5) => {
     p5.background("#222");
+    this.width = document.getElementById('atari').clientWidth;
+    this.height = document.getElementById('atari').clientHeight;
     this.ball.show(p5);
     this.board.show(p5);
     this.rect.show(p5);
@@ -126,6 +142,7 @@ class Atari extends React.Component {
     this.width = document.getElementById('atari').clientWidth;
     this.height = document.getElementById('atari').clientHeight;
     p5.resizeCanvas(this.width, this.height);
+    this.resizePix();
   }
 
 

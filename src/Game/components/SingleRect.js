@@ -1,10 +1,10 @@
 // import p5 from "react-p5";
 
-function SingleRect(d){
+function SingleRect(width, height, d){
   this.x = d.x;
   this.y = d.y;
-  this.length = 110;
-  this.width = 30;
+  this.length = width/6;
+  this.width = height/14;
 
   this.erase = () => {
     this.length = 0;
