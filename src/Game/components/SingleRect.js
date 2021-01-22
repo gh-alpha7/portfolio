@@ -18,7 +18,7 @@ function SingleRect(width, height, d){
     p5.rect(this.x, this.y, this.length, this.width);
     p5.strokeWeight(0);
     p5.fill("#08fdd8")
-    p5.text(d.str, this.x + this.length/5, this.y + this.length/6)
+    p5.text(d.str, this.x + this.length/8, this.y + this.length/5)
   }
 }
 

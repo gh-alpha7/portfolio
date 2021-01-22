@@ -89,22 +89,22 @@ class Atari extends React.Component {
     if(this.ball.y <= 580)
     this.rect.rect_.map((d, ind)=>{
       // console.log(d, this.ball.x, this.ball.y)
-      if(this.ball.x + 10 >= d.x && this.ball.x <= d.x + 110 && this.ball.y >= d.y && this.ball.y <= d.y + 35){
+      if(this.ball.x + 10 >= d.x && this.ball.x <= d.x + this.width/6 && this.ball.y >= d.y && this.ball.y <= d.y + this.height/14){
         this.rect.rect_.splice(ind, 1);
         if(d.str != "") {
           this.reset(p5)
           this.props.callback(d.str)
           return
         }
-        console.log(this.ball.x, this.ball.y, d.x, d.y)
+        console.log(this.ball.y, this.ball.x, d.x,d.y,this.height/14, this.width/6)
 
         if(this.ball.y <= d.y)                  //top
           this.ball.y_vel *= -1;
-        else if(this.ball.x+10 <= d.x)                  //left
+        else if(this.ball.x <= d.x)                  //left
           this.ball.x_vel *= -1;
-        else if(this.ball.x >= d.x + 110)             //right
+        else if(this.ball.x + 5 >= d.x + this.width/6)             //right
           this.ball.x_vel *= -1;
-        else if(this.ball.y >= d.y + 30)             //bottom
+        else if(this.ball.y + 5 >= d.y + this.height/14)             //bottom
           this.ball.y_vel *= -1;
       }
     })
