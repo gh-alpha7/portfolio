@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import '../css/resume.css';
-import Particles from 'react-particles-js';
+// import Particles from 'react-particles-js';
 import data from '../particlesjs-config'
 import Interests from '../Resume/Interests'
 import Skills from '../Resume/Skills'
@@ -19,8 +19,6 @@ class Resume extends React.Component {
       <div className="resume-div">
         {component}
       </div>
-      <Particles
-        params={data} />
       </div>
     );
   }

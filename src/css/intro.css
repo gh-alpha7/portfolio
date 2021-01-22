@@ -1,5 +1,5 @@
 .intro{
-  height: 30vh;
+  height: 40vh;
   background-color: #222;
 }
 
@@ -7,12 +7,12 @@
   /* font: 300 11px/1.4 'Helvetica Neue', Helvetica, Arial, sans-serif; */
   font-family: Tahoma;
   color: #fff;
-  font-size: 3vw;
+  font-size: 3.2vw;
   margin: 0px !important;
 }
 
 .intro-div{
-  margin: 40px;
+  margin: 60px;
 }
 
 .name{

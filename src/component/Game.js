@@ -18,7 +18,7 @@ class Game extends React.Component {
       <div className="game">
         <Header/>
         <Atari callback={this.filledClick} ref={instance => { this.atari = instance; }}/>
-        <Buttons onStart={() => this.atari.handleKeyDown({keyCode: "13"})} onReset={()=> this.atari.reset()}/>
+        <Buttons onStart={() => this.atari.pressStart()} onReset={()=> this.atari.resetButton()}/>
       </div>
     );
   }

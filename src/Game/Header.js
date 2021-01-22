@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import '../css/game.css';
 import S from '../s.png'
-import Particles from 'react-particles-js';
+// import Particles from 'react-particles-js';
 import data from '../particlesjs-config'
 
 function Intro() {
@@ -13,8 +13,7 @@ function Intro() {
         <code>else</code>
         <code className="tab_code">download_resume(<a className="link" href="https://github.com/gh-alpha7/tictac/raw/master/Subham's%20Resume.pdf">download</a>);</code>
 
-        <Particles
-          params={data} />
+
     </div>
   );
 }
