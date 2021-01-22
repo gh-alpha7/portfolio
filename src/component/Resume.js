@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import '../css/resume.css';
 // import Particles from 'react-particles-js';
 import data from '../particlesjs-config'
@@ -13,7 +13,7 @@ class Resume extends React.Component {
     super(props);
   }
   render(){
-    let component = this.props.comp == "EXPERIENCE"?<Experience/>: this.props.comp == "EDUCATION"? <Education/>: this.props.comp == "PROJECTS"? <Project/>: this.props.comp == "INTERESTS"? <Interests/>: this.props.comp == "SKILLS"? <Skills/>: null;
+    let component = this.props.comp === "EXPERIENCE"?<Experience/>: this.props.comp === "EDUCATION"? <Education/>: this.props.comp === "PROJECTS"? <Project/>: this.props.comp === "INTERESTS"? <Interests/>: this.props.comp === "SKILLS"? <Skills/>: null;
     return (
       <div className="resume">
       <div className="resume-div">

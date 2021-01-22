@@ -1,7 +1,5 @@
-import React, { useRef } from 'react';
-
+import React from 'react';
 import '../css/game.css';
-import S from '../s.png'
 
 class Button extends React.Component {
 

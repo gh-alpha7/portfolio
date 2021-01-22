@@ -5,6 +5,8 @@ function Rectangle(width, height){
   this.col = 5;
   this.left = 10;
   this.top = 10;
+  this.wide = width;
+  this.height = height;
   this.width = height/12;
   this.length = width/5;
   this.rect_text = [{index: [0,0]}, {index: [1,2]}, {index: [1,4]}, {index: [2,3]}, {index: [3,1]}];
@@ -22,7 +24,7 @@ function Rectangle(width, height){
       let x = this.left, y = this.top + this.width * i;
       for(let j = 0; j < this.col; j++){
         let str = "";
-        if(ind <= 4 && i == this.rect_text[ind].index[0] && j == this.rect_text[ind].index[1]){
+        if(ind <= 4 && i === this.rect_text[ind].index[0] && j === this.rect_text[ind].index[1]){
           str = sections[ind];
           ind++;
         }
@@ -35,7 +37,7 @@ function Rectangle(width, height){
 
   this.show = (p5) => {
     this.rect_.map(d=>{
-      let rect = new SingleRect(width, height, d);
+      let rect = new SingleRect(this.wide, this.height, d);
       rect.show(p5);
     })
   }
