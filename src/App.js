@@ -15,23 +15,22 @@ class App extends React.Component {
     // console.log("inside selected")
   }
 
-  translate = () => {
-    if(window.location.pathname === "/portfolio")
-      return (
-        <div className="app">
-          <Menu/>
-          <div className="resume-box">
-            <Intro/>
-            <Resume comp={this.state.comp}/>
-          </div>
-          <Game selected={this.selected}/>
-        </div>
-      )
-  }
+  // translate = () => {
+  //   if(window.location.pathname === "/portfolio")
+  //     return (
+  //
+  //     )
+  // }
 
   render(){
-    return (<div>
-      {this.translate()}
+    return (
+      <div className="app">
+        <Menu/>
+        <div className="resume-box">
+          <Intro/>
+          <Resume comp={this.state.comp}/>
+        </div>
+        <Game selected={this.selected}/>
       </div>
     );
   }
