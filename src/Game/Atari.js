@@ -122,11 +122,11 @@ class Atari extends React.Component {
     this.ball.moving = 1;
   }
 
-  // windowResized =(p5)=> {
-  //   this.width = document.getElementById('atari').clientWidth;
-  //   this.height = document.getElementById('atari').clientHeight;
-  //   p5.resizeCanvas(this.width, this.height);
-  // }
+  windowResized =(p5)=> {
+    this.width = document.getElementById('atari').clientWidth;
+    this.height = document.getElementById('atari').clientHeight;
+    p5.resizeCanvas(this.width, this.height);
+  }
 
 
   render(){
