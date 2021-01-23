@@ -86,26 +86,25 @@ class Atari extends React.Component {
 
 
   collission = (p5) =>{
-    if(this.ball.y <= 580)
+    if(this.ball.y <= this.height/2)
     this.rect.rect_.map((d, ind)=>{
-      // console.log(d, this.ball.x, this.ball.y)
-      if(this.ball.x + 10 >= d.x && this.ball.x <= d.x + this.width/6 && this.ball.y >= d.y && this.ball.y <= d.y + this.height/14){
+      let left = Math.floor(d.x)-10, top = Math.floor(d.y)-10, bottom = Math.floor(d.y + this.height/14)+10, right = Math.floor(d.x + this.width/6)+10;
+      let x = this.ball.x + Math.floor(this.ball.radius/2), y = this.ball.y + Math.floor(this.ball.radius/2);
+      if(this.ball.x >= left && this.ball.x <= right && this.ball.y >= top && this.ball.y <= bottom){
+        console.log(left, top, right, bottom, this.ball.x+1, this.ball.y+1)
+        // console.log(this.ball.y, this.ball.x, d.x,d.y,this.height/14, this.width/6)
+        // this.rect.rect_ = []
         this.rect.rect_.splice(ind, 1);
         if(d.str != "") {
           this.reset(p5)
           this.props.callback(d.str)
           return
         }
-        console.log(this.ball.y, this.ball.x, d.x,d.y,this.height/14, this.width/6)
 
-        if(this.ball.y <= d.y)                  //top
+        if(this.ball.y  <= d.y || this.ball.y >= d.y + this.height/14)                  //top
           this.ball.y_vel *= -1;
-        else if(this.ball.x <= d.x)                  //left
+        else if(this.ball.x <= d.x || this.ball.x >= d.x + this.width/6 )                  //left
           this.ball.x_vel *= -1;
-        else if(this.ball.x + 5 >= d.x + this.width/6)             //right
-          this.ball.x_vel *= -1;
-        else if(this.ball.y + 5 >= d.y + this.height/14)             //bottom
-          this.ball.y_vel *= -1;
       }
     })
     if(this.ball.x <= this.left_wall)

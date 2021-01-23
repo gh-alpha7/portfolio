@@ -37,7 +37,7 @@ function Ball(height, width){
 
   this.show = (p5) =>{
     p5.fill("#08fdd8")
-    p5.ellipse(this.x, this.y, this.radius, this.radius);
+    p5.ellipse(this.x, this.y, this.radius);
   }
 }
 
