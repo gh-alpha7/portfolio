@@ -129,7 +129,7 @@ class Atari extends React.Component {
   resetButton = () =>{
     this.ball = new Ball(this.height, this.width);
     this.board = new Board(this.height, this.width);
-    this.rect = new Rectangle();
+    this.rect = new Rectangle(this.width, this.height);
     this.rect.createBrick();
   }
 
