@@ -18,7 +18,7 @@ function Rectangle(width, height){
   }
 
   this.createBrick = () =>{
-    let sections = ["INTERESTS", "EDUCATION", "PROJECTS", "SKILLS", "EXPERIENCE"]
+    let sections = ["EXPERIENCE", "INTERESTS", "EDUCATION", "PROJECTS", "SKILLS"]
     let ind = 0;
     for(let i = 0; i < this.row; i++){
       let x = this.left, y = this.top + this.width * i;
