@@ -216,7 +216,7 @@ kbd {
 
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
 .card {
-  display: block; overflow: hidden; border-radius: var(--radius);
+  position: relative; display: block; overflow: hidden; border-radius: var(--radius);
   background: var(--surface); border: 1px solid var(--line); color: var(--text);
   transition: border-color .2s, transform .2s, box-shadow .2s;
 }
@@ -229,12 +229,41 @@ kbd {
 .card:hover .card-media img { transform: scale(1.04); }
 .card-body { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; }
 .card-body h3 { font-size: 19px; font-weight: 600; }
-.card-arrow { color: var(--muted); font-size: 18px; transition: color .2s, transform .2s; }
+.card-link { color: var(--text); }
+.card-link:hover { text-decoration: none; }
+/* the title link covers the whole card; the like button sits above it */
+.card-link::after { content: ""; position: absolute; inset: 0; z-index: 0; }
+.card-body .like { position: relative; z-index: 1; }
+.card-arrow { display: inline-block; margin-left: 4px; color: var(--muted); font-size: 16px; transition: color .2s, transform .2s; }
 .card:hover .card-arrow { color: var(--accent); transform: translate(2px, -2px); }
 @media (prefers-reduced-motion: reduce) {
   .card, .card-media img, .card-arrow { transition: none; }
   .card:hover, .card:hover .card-media img, .card:hover .card-arrow { transform: none; }
 }
+
+/* ---------- like button ---------- */
+.like {
+  --heart: var(--accent-2);
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 34px; padding: 0 12px 0 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg-2); color: var(--muted);
+  font: 500 14px/1 var(--mono); cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.like svg {
+  width: 17px; height: 17px; overflow: visible;
+  fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round;
+  transition: fill .2s, stroke .2s, transform .2s;
+}
+.like:hover { color: var(--heart); border-color: rgba(255, 61, 127, .5); }
+.like:hover svg { transform: scale(1.1); }
+.like[aria-pressed="true"] { color: var(--text); border-color: rgba(255, 61, 127, .45); background: rgba(255, 61, 127, .1); }
+.like[aria-pressed="true"] svg { fill: var(--heart); stroke: var(--heart); }
+.like.pop svg { animation: heart-pop .45s cubic-bezier(.2, 1.6, .4, 1); }
+.like-count { min-width: 1ch; font-variant-numeric: tabular-nums; }
+@keyframes heart-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.35); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .like.pop svg { animation: none; } }
+.footer-like { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); }
 
 .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .skill-groups > div { padding: 22px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
@@ -263,7 +292,7 @@ kbd {
   .hero { grid-template-columns: 1fr; padding-top: 48px; gap: 40px; }
   .nav-links { display: none; }
   .nav nav { margin-left: 0; }
-  .nav-inner > .btn { margin-left: auto; }
+  .nav-inner > .like { margin-left: auto; }
   .cards, .skill-groups, .edu { grid-template-columns: 1fr; }
 }
 @media (max-width: 520px) {

@@ -33,6 +33,10 @@
           <li><a href="#interests" data-section="interests">Interests</a></li>
         </ul>
       </nav>
+      <button class="like" type="button" data-like-key="site" data-like-name="this portfolio" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.3-4.5-9.3-9C1.3 8.2 3.3 4.5 6.9 4.5c2 0 3.5 1.1 5.1 2.9 1.6-1.8 3.1-2.9 5.1-2.9 3.6 0 5.6 3.7 4.2 7-2 4.5-9.3 9-9.3 9z"/></svg>
+        <span class="like-count">–</span>
+      </button>
       <a class="btn btn-sm" href="https://github.com/gh-alpha7/tictac/raw/master/Subham's%20Resume.pdf">Resume</a>
     </div>
   </header>
@@ -134,15 +138,18 @@
       </header>
       <ul class="cards">
         <li>
-          <a class="card" href="https://gh-alpha7.github.io/chess-video/">
+          <article class="card">
             <div class="card-media">
               <img src="assets/chess-video.png" alt="chess-video app: PGN input, reel preview and board theme picker" width="1440" height="900" loading="lazy" />
             </div>
             <div class="card-body">
-              <h3>chess-video</h3>
-              <span class="card-arrow" aria-hidden="true">↗</span>
+              <h3><a class="card-link" href="https://gh-alpha7.github.io/chess-video/">chess-video <span class="card-arrow" aria-hidden="true">↗</span></a></h3>
+              <button class="like" type="button" data-like-key="project-chess-video" data-like-name="chess-video" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.3-4.5-9.3-9C1.3 8.2 3.3 4.5 6.9 4.5c2 0 3.5 1.1 5.1 2.9 1.6-1.8 3.1-2.9 5.1-2.9 3.6 0 5.6 3.7 4.2 7-2 4.5-9.3 9-9.3 9z"/></svg>
+                <span class="like-count">–</span>
+              </button>
             </div>
-          </a>
+          </article>
         </li>
       </ul>
     </section>
@@ -192,6 +199,12 @@
 
   <footer class="footer">
     <p>Let's talk: <a href="https://www.linkedin.com/in/subham-kumar-singh-853728108/">LinkedIn</a></p>
+    <p class="footer-like">Enjoyed this?
+      <button class="like" type="button" data-like-key="site" data-like-name="this portfolio" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.3-4.5-9.3-9C1.3 8.2 3.3 4.5 6.9 4.5c2 0 3.5 1.1 5.1 2.9 1.6-1.8 3.1-2.9 5.1-2.9 3.6 0 5.6 3.7 4.2 7-2 4.5-9.3 9-9.3 9z"/></svg>
+        <span class="like-count">–</span>
+      </button>
+    </p>
     <p class="mono muted">© <span id="year">2026</span> Subham Singh</p>
   </footer>
 
