@@ -13,3 +13,6 @@ Serve the folder with any static server, e.g. `npx serve .`, and open it in a br
 ## Deploy
 
 GitHub Pages serves the `gh-pages` branch. Copy these files to that branch and push.
+
+When `styles.css` or `main.js` change, bump the `?v=` number on their tags in
+`index.html` so returning visitors don't mix a new page with cached old files.
