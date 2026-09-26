@@ -417,3 +417,87 @@
   resize();
   requestAnimationFrame(frame);
 })();
+
+/* ---------- likes ---------- */
+// Counts live in Abacus (a free, no-signup counter API) because GitHub Pages is static.
+// Each browser can like each item once; that choice is remembered in localStorage.
+(function () {
+  "use strict";
+
+  var API = "https://abacus.jasoncameron.dev";
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var NS = local ? "gh-alpha7-portfolio-dev" : "gh-alpha7-portfolio";
+
+  var groups = {};   // key -> { buttons, name, count, liked, busy }
+  document.querySelectorAll(".like[data-like-key]").forEach(function (btn) {
+    var key = btn.dataset.likeKey;
+    if (!groups[key]) groups[key] = { buttons: [], name: btn.dataset.likeName || "this", count: null, liked: read(key), busy: false };
+    groups[key].buttons.push(btn);
+    btn.addEventListener("click", function () { like(key, btn); });
+  });
+
+  function read(key) {
+    try { return localStorage.getItem("liked:" + key) === "1"; } catch (e) { return false; }
+  }
+  function remember(key) {
+    try { localStorage.setItem("liked:" + key, "1"); } catch (e) { /* private mode: like still counts */ }
+  }
+
+  function fmt(n) {
+    if (n == null) return "–";
+    if (n < 1000) return String(n);
+    return (n / 1000).toFixed(n < 10000 ? 1 : 0).replace(/\.0$/, "") + "k";
+  }
+
+  function render(key) {
+    var g = groups[key];
+    g.buttons.forEach(function (btn) {
+      btn.querySelector(".like-count").textContent = fmt(g.count);
+      btn.setAttribute("aria-pressed", g.liked ? "true" : "false");
+      var total = g.count == null ? "" : " (" + g.count + (g.count === 1 ? " like)" : " likes)");
+      btn.setAttribute("aria-label", (g.liked ? "You liked " : "Like ") + g.name + total);
+      btn.title = g.liked ? "Thanks for the love!" : "Like " + g.name;
+    });
+  }
+
+  function pop(btn) {
+    btn.classList.remove("pop");
+    void btn.offsetWidth;
+    btn.classList.add("pop");
+  }
+
+  function request(action, key) {
+    return fetch(API + "/" + action + "/" + NS + "/" + key, { cache: "no-store" }).then(function (res) {
+      if (res.status === 404) return { value: 0 };   // counter not created until the first like
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    });
+  }
+
+  function like(key, btn) {
+    var g = groups[key];
+    pop(btn);
+    if (g.liked || g.busy) return;   // one like per browser; the API can't safely un-like
+    g.busy = true;
+    g.liked = true;
+    g.count = (g.count || 0) + 1;   // optimistic
+    render(key);
+    request("hit", key).then(function (data) {
+      g.count = data.value;
+      remember(key);
+    }).catch(function () {
+      g.liked = false;
+      g.count = Math.max(0, (g.count || 1) - 1);
+    }).then(function () {
+      g.busy = false;
+      render(key);
+    });
+  }
+
+  Object.keys(groups).forEach(function (key) {
+    render(key);
+    request("get", key).then(function (data) {
+      groups[key].count = data.value;
+    }).catch(function () { /* leave the dash if the API is unreachable */ }).then(function () { render(key); });
+  });
+})();
