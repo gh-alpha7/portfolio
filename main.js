@@ -54,11 +54,11 @@
   };
 
   var SECTIONS = {
-    EXPERIENCE: { id: "experience", title: "Experience", text: "Now at Cashfree Payments. Before that: Samsung (Connectivity-AI) and Microland, working on C router APIs, MERN dashboards and conversational AI." },
+    EXPERIENCE: { id: "experience", title: "Experience", text: "Backend engineer at Cashfree Payments. Before that: router APIs at Samsung, plus anomaly-detection dashboards and conversational bots at Microland." },
     INTERESTS:  { id: "interests",  title: "Interests",  text: "Physics, singing, sketching, gaming, and cracking codes and ciphers." },
     EDUCATION:  { id: "education",  title: "Education",  text: "B.E. in Biotechnology from BIT Mesra, Ranchi." },
-    PROJECTS:   { id: "projects",   title: "Projects",   text: "chess-video: turns chess PGN files into Instagram-ready 1080×1920 MP4 reels, right in the browser." },
-    SKILLS:     { id: "skills",     title: "Skills",     text: "Backend first: Node.js, C/C++, Python, React, Redux, OpenWrt and FastCGI." }
+    PROJECTS:   { id: "projects",   title: "Projects",   text: "chess-video turns chess games into Instagram reels; Foosball Party is multiplayer foosball played with your phone." },
+    SKILLS:     { id: "skills",     title: "Skills",     text: "Go, Java, Spring Boot and Node.js on the backend; React and React Native up front; MySQL, Redis and MongoDB for data." }
   };
   // [row, col] -> label, matching the original layout
   var LABELS = { "0,0": "EXPERIENCE", "1,2": "INTERESTS", "1,4": "EDUCATION", "2,3": "PROJECTS", "3,1": "SKILLS" };

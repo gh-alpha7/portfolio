@@ -357,3 +357,17 @@ kbd {
   .overlay { padding: 18px; }
   .overlay p:not(.overlay-kicker) { font-size: 14px; }
 }
+
+/* ---------- intro facts + experience highlights ---------- */
+.lede strong { color: var(--text); font-weight: 600; }
+.hero-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; font-size: 13px; }
+.hero-facts li {
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg-2); color: var(--text);
+}
+.hero-facts span { color: var(--accent); text-transform: uppercase; letter-spacing: .08em; font-size: 11px; }
+.tl-points { margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.tl-points li { position: relative; padding-left: 18px; color: var(--muted); }
+.tl-points li::before {
+  content: ""; position: absolute; left: 2px; top: .7em; width: 7px; height: 2px; border-radius: 1px; background: var(--accent);
+}
