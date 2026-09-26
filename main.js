@@ -76,7 +76,7 @@
     TOP = compact ? 24 : 36;
     BH = compact ? 34 : 40;
     BW = (W - SIDE * 2 - GAP * (COLS - 1)) / COLS;
-    LABEL_FONT = compact ? "500 11px 'JetBrains Mono', monospace" : "500 15px 'JetBrains Mono', monospace";
+    LABEL_FONT = compact ? "500 10px 'JetBrains Mono', monospace" : "500 15px 'JetBrains Mono', monospace";
   }
   function bx(b) { return SIDE + b.c * (BW + GAP); }
   function by(b) { return TOP + b.r * (BH + GAP); }
@@ -332,7 +332,7 @@
       ctx.fillStyle = C.text;
       ctx.globalAlpha = reduceMotion ? 1 : 0.55 + 0.45 * Math.sin(t / 300);
       ctx.font = compact ? "500 15px 'JetBrains Mono', monospace" : "500 18px 'JetBrains Mono', monospace";
-      ctx.fillText(compact ? "tap to launch" : lives < 3 ? "press space to relaunch" : "press space or start", W / 2, H - 110);
+      ctx.fillText(compact ? "space or tap to launch" : lives < 3 ? "press space to relaunch" : "press space or start", W / 2, H - 110);
       ctx.globalAlpha = 1;
       ctx.fillStyle = C.muted;
       ctx.font = compact ? "12px 'JetBrains Mono', monospace" : "14px 'JetBrains Mono', monospace";
