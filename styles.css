@@ -225,6 +225,24 @@ kbd {
 .card h3 { font-size: 20px; margin-bottom: 8px; }
 .card p:last-child { color: var(--muted); font-size: 16px; }
 
+.card-feature {
+  display: grid; grid-template-columns: 1fr 180px; gap: 32px; align-items: center;
+  padding: 32px; color: var(--text);
+}
+.card-feature:hover { text-decoration: none; }
+.card-feature h3 { font-size: 26px; margin-bottom: 10px; }
+.card-feature p:not(.card-kicker) { color: var(--muted); max-width: 40em; }
+.card-link { display: inline-block; margin-top: 18px; font-size: 14px; color: var(--accent); }
+.card-feature:hover .card-link span { display: inline-block; transform: translateX(4px); transition: transform .2s; }
+.mini-board {
+  display: grid; grid-template-columns: repeat(4, 1fr); aspect-ratio: 1;
+  border-radius: 10px; overflow: hidden; border: 1px solid var(--line);
+}
+.mini-board i:nth-child(8n+1), .mini-board i:nth-child(8n+3),
+.mini-board i:nth-child(8n+6), .mini-board i:nth-child(8n+8) { background: var(--accent-dim); }
+.mini-board i { background: var(--bg-2); }
+.mini-board i:nth-child(6), .mini-board i:nth-child(11) { background: var(--accent); }
+
 .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .skill-groups > div { padding: 22px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
 .skill-groups h3 { font-size: 13px; color: var(--muted); font-weight: 400; margin-bottom: 14px; }
@@ -254,6 +272,8 @@ kbd {
   .nav nav { margin-left: 0; }
   .nav-inner > .btn { margin-left: auto; }
   .cards, .skill-groups, .edu { grid-template-columns: 1fr; }
+  .card-feature { grid-template-columns: 1fr; padding: 24px; }
+  .mini-board { display: none; }
 }
 @media (max-width: 520px) {
   body { font-size: 16px; }
