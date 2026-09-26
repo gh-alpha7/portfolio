@@ -243,26 +243,79 @@ kbd {
 
 /* ---------- like button ---------- */
 .like {
-  --heart: var(--accent-2);
-  display: inline-flex; align-items: center; gap: 6px;
-  height: 34px; padding: 0 12px 0 10px; border-radius: 999px;
+  --heart: #ff3d7f;
+  --heart-2: #ff8a4c;
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 36px; padding: 0 14px 0 10px; border-radius: 999px;
   border: 1px solid var(--line); background: var(--bg-2); color: var(--muted);
-  font: 500 14px/1 var(--mono); cursor: pointer;
-  transition: border-color .2s, color .2s, background .2s;
+  font: 600 14px/1 var(--sans); cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s, box-shadow .2s;
 }
-.like svg {
-  width: 17px; height: 17px; overflow: visible;
-  fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round;
-  transition: fill .2s, stroke .2s, transform .2s;
+.like[hidden] { display: none; }
+.like:hover { color: var(--text); border-color: rgba(255, 61, 127, .45); }
+.like[aria-pressed="true"] {
+  color: #ffd1e0; border-color: rgba(255, 61, 127, .5);
+  background: linear-gradient(135deg, rgba(255, 61, 127, .16), rgba(255, 138, 76, .1));
+  box-shadow: 0 0 24px -8px rgba(255, 61, 127, .55);
 }
-.like:hover { color: var(--heart); border-color: rgba(255, 61, 127, .5); }
-.like:hover svg { transform: scale(1.1); }
-.like[aria-pressed="true"] { color: var(--text); border-color: rgba(255, 61, 127, .45); background: rgba(255, 61, 127, .1); }
-.like[aria-pressed="true"] svg { fill: var(--heart); stroke: var(--heart); }
-.like.pop svg { animation: heart-pop .45s cubic-bezier(.2, 1.6, .4, 1); }
-.like-count { min-width: 1ch; font-variant-numeric: tabular-nums; }
-@keyframes heart-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.35); } 100% { transform: scale(1); } }
-@media (prefers-reduced-motion: reduce) { .like.pop svg { animation: none; } }
+
+.like-icon { position: relative; display: grid; place-items: center; width: 20px; height: 20px; }
+.heart {
+  width: 20px; height: 20px; overflow: visible;
+  fill: transparent; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  transition: fill .2s, stroke .2s, transform .25s cubic-bezier(.3, 1.6, .5, 1);
+}
+.like:hover .heart { stroke: var(--heart); transform: scale(1.12); }
+.like[aria-pressed="true"] .heart { fill: url(#heart-grad); stroke: url(#heart-grad); }
+.like.pop .heart { animation: heart-pop .5s cubic-bezier(.2, 1.8, .4, 1); }
+
+/* ring + confetti dots when a like lands */
+.like-icon::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%;
+  border: 2px solid var(--heart); opacity: 0; transform: scale(.3); pointer-events: none;
+}
+.like.burst .like-icon::after { animation: heart-ring .5s ease-out; }
+.like-burst { position: absolute; inset: 0; pointer-events: none; }
+.like-burst i {
+  position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px 0 0 -2px;
+  border-radius: 50%; background: var(--heart); opacity: 0;
+  transform: rotate(var(--a)) translateY(0);
+}
+.like-burst i:nth-child(even) { background: var(--heart-2); width: 3px; height: 3px; }
+.like.burst .like-burst i { animation: heart-dot .6s ease-out forwards; }
+
+/* rolling counter */
+.like-count {
+  display: inline-grid; overflow: hidden; height: 1.25em; line-height: 1.25em;
+  min-width: 1ch; text-align: left; font-variant-numeric: tabular-nums;
+}
+.like-num { grid-area: 1 / 1; }
+.like-num.in-up { animation: roll-in-up .35s cubic-bezier(.2, .9, .3, 1); }
+.like-num.out-up { animation: roll-out-up .35s cubic-bezier(.2, .9, .3, 1) forwards; }
+.like-num.in-down { animation: roll-in-down .35s cubic-bezier(.2, .9, .3, 1); }
+.like-num.out-down { animation: roll-out-down .35s cubic-bezier(.2, .9, .3, 1) forwards; }
+.like-count.loading .like-num {
+  width: 2.2ch; height: .8em; margin-top: .22em; border-radius: 4px; color: transparent;
+  background: linear-gradient(90deg, var(--line) 0%, #2f3843 50%, var(--line) 100%) 0 0 / 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+@keyframes heart-pop { 0% { transform: scale(.4); } 55% { transform: scale(1.3); } 100% { transform: scale(1); } }
+@keyframes heart-ring { 0% { opacity: .9; transform: scale(.3); } 100% { opacity: 0; transform: scale(1.5); border-width: 0; } }
+@keyframes heart-dot {
+  0% { opacity: 1; transform: rotate(var(--a)) translateY(0) scale(1); }
+  100% { opacity: 0; transform: rotate(var(--a)) translateY(-17px) scale(.4); }
+}
+@keyframes roll-in-up { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes roll-out-up { to { transform: translateY(-100%); opacity: 0; } }
+@keyframes roll-in-down { from { transform: translateY(-100%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes roll-out-down { to { transform: translateY(100%); opacity: 0; } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .like.pop .heart, .like.burst .like-icon::after, .like.burst .like-burst i,
+  .like-num.in-up, .like-num.in-down, .like-num.out-up, .like-num.out-down { animation: none; }
+  .like-num.out-up, .like-num.out-down { display: none; }
+}
 .footer-like { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); }
 
 .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }

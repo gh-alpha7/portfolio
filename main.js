@@ -427,10 +427,29 @@
   var API = "https://abacus.jasoncameron.dev";
   var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   var NS = local ? "gh-alpha7-portfolio-dev" : "gh-alpha7-portfolio";
+  var HEART = "M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z";
+  var compact = window.Intl && Intl.NumberFormat ? new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }) : null;
+
+  // one shared gradient for every filled heart
+  document.body.insertAdjacentHTML("afterbegin",
+    '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' +
+    '<linearGradient id="heart-grad" x1="0" y1="0" x2="1" y2="1">' +
+    '<stop offset="0" stop-color="#ff3d7f"/><stop offset="1" stop-color="#ff8a4c"/>' +
+    '</linearGradient></defs></svg>');
+
+  var dots = "";
+  for (var d = 0; d < 8; d++) dots += '<i style="--a:' + (d * 45) + 'deg"></i>';
 
   var groups = {};   // key -> { buttons, name, count, liked, busy }
   document.querySelectorAll(".like[data-like-key]").forEach(function (btn) {
     var key = btn.dataset.likeKey;
+    btn.innerHTML =
+      '<span class="like-icon" aria-hidden="true">' +
+        '<svg class="heart" viewBox="0 0 24 24"><path d="' + HEART + '"/></svg>' +
+        '<span class="like-burst">' + dots + '</span>' +
+      '</span>' +
+      '<span class="like-count loading" aria-hidden="true"><span class="like-num">0</span></span>';
+    btn.hidden = false;
     if (!groups[key]) groups[key] = { buttons: [], name: btn.dataset.likeName || "this", count: null, liked: read(key), busy: false };
     groups[key].buttons.push(btn);
     btn.addEventListener("click", function () { like(key, btn); });
@@ -443,27 +462,43 @@
     try { localStorage.setItem("liked:" + key, "1"); } catch (e) { /* private mode: like still counts */ }
   }
 
-  function fmt(n) {
-    if (n == null) return "–";
-    if (n < 1000) return String(n);
-    return (n / 1000).toFixed(n < 10000 ? 1 : 0).replace(/\.0$/, "") + "k";
+  function fmt(n) { return compact ? compact.format(n) : String(n); }
+
+  // Swap the number with a short vertical roll: up when it grows, down when it shrinks.
+  function setCount(btn, n, prev) {
+    var box = btn.querySelector(".like-count");
+    var text = n == null ? "0" : fmt(n);
+    box.classList.toggle("loading", n == null);
+    var cur = box.querySelector(".like-num:not(.out-up):not(.out-down)");
+    if (cur && cur.textContent === text) return;
+    if (!cur || prev == null || n == null) {
+      box.innerHTML = '<span class="like-num">' + text + "</span>";
+      return;
+    }
+    var dir = n >= prev ? "up" : "down";
+    var next = document.createElement("span");
+    next.className = "like-num in-" + dir;
+    next.textContent = text;
+    cur.className = "like-num out-" + dir;
+    box.appendChild(next);
+    setTimeout(function () { if (cur.parentNode) cur.parentNode.removeChild(cur); }, 400);
   }
 
-  function render(key) {
+  function render(key, prev) {
     var g = groups[key];
     g.buttons.forEach(function (btn) {
-      btn.querySelector(".like-count").textContent = fmt(g.count);
+      setCount(btn, g.count, prev);
       btn.setAttribute("aria-pressed", g.liked ? "true" : "false");
-      var total = g.count == null ? "" : " (" + g.count + (g.count === 1 ? " like)" : " likes)");
+      var total = g.count == null ? "" : ", " + g.count + (g.count === 1 ? " like" : " likes");
       btn.setAttribute("aria-label", (g.liked ? "You liked " : "Like ") + g.name + total);
       btn.title = g.liked ? "Thanks for the love!" : "Like " + g.name;
     });
   }
 
-  function pop(btn) {
-    btn.classList.remove("pop");
+  function animate(btn, cls) {
+    btn.classList.remove(cls);
     void btn.offsetWidth;
-    btn.classList.add("pop");
+    btn.classList.add(cls);
   }
 
   function request(action, key) {
@@ -476,28 +511,33 @@
 
   function like(key, btn) {
     var g = groups[key];
-    pop(btn);
+    animate(btn, "pop");
     if (g.liked || g.busy) return;   // one like per browser; the API can't safely un-like
     g.busy = true;
     g.liked = true;
-    g.count = (g.count || 0) + 1;   // optimistic
-    render(key);
+    var prev = g.count || 0;
+    g.count = prev + 1;   // optimistic
+    render(key, prev);
+    g.buttons.forEach(function (b) { animate(b, "burst"); });
     request("hit", key).then(function (data) {
+      var shown = g.count;
       g.count = data.value;
       remember(key);
+      render(key, shown);
     }).catch(function () {
+      var shown = g.count;
       g.liked = false;
-      g.count = Math.max(0, (g.count || 1) - 1);
-    }).then(function () {
-      g.busy = false;
-      render(key);
-    });
+      g.count = Math.max(0, shown - 1);
+      render(key, shown);
+    }).then(function () { g.busy = false; });
   }
 
   Object.keys(groups).forEach(function (key) {
-    render(key);
+    render(key, null);
     request("get", key).then(function (data) {
       groups[key].count = data.value;
-    }).catch(function () { /* leave the dash if the API is unreachable */ }).then(function () { render(key); });
+    }).catch(function () {
+      groups[key].count = 0;   // API unreachable: show 0 rather than an endless shimmer
+    }).then(function () { render(key, null); });
   });
 })();
