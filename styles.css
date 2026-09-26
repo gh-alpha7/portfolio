@@ -9,7 +9,7 @@
   --accent-2: #ff3d7f;
   --accent-dim: rgba(8, 253, 216, 0.12);
   --radius: 14px;
-  --max: 1160px;
+  --max: 1320px;
   --sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
 }
@@ -94,10 +94,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- hero ---------- */
 .hero {
   max-width: var(--max); margin: 0 auto; padding: 72px 24px 96px;
-  display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center;
+  display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.3fr); gap: 48px; align-items: center;
 }
 .eyebrow { color: var(--accent); font-size: 14px; margin-bottom: 18px; }
-.hero h1 { font-size: clamp(44px, 6.2vw, 80px); font-weight: 700; }
+.hero h1 { font-size: clamp(44px, 5.6vw, 72px); font-weight: 700; }
 .name { white-space: nowrap; }
 .name-s {
   display: inline-block; height: 0.82em; width: auto;
@@ -143,7 +143,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .arcade-code .k { color: var(--accent-2); }
 .arcade-code .c { color: #5c6773; font-style: italic; }
-.stage { position: relative; margin: 14px 16px 0; aspect-ratio: 4 / 3; }
+.stage { position: relative; margin: 14px 16px 0; aspect-ratio: 16 / 10; }
 .stage.compact { aspect-ratio: 3 / 4; }
 #game {
   width: 100%; height: 100%; display: block;

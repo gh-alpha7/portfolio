@@ -40,7 +40,7 @@
   var canvas = document.getElementById("game");
   var stage = document.getElementById("stage");
   var ctx = canvas.getContext("2d");
-  var W = 800, H = 600;               // virtual resolution, scaled to fit the stage
+  var W = 960, H = 600;               // virtual resolution, scaled to fit the stage (set by layout())
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var C = {
@@ -65,11 +65,11 @@
 
   var ROWS = 4, COLS = 5, GAP, SIDE, TOP, BH, BW, LABEL_FONT, compact = null;
 
-  // Wide stages use an 800x600 board; phones get a taller 400x533 board so labels stay legible.
+  // Wide stages use a 960x600 (16:10) board; phones get a taller 400x533 board so labels stay legible.
   function layout(isCompact) {
     compact = isCompact;
     stage.classList.toggle("compact", compact);
-    W = compact ? 400 : 800;
+    W = compact ? 400 : 960;
     H = compact ? 533 : 600;
     SIDE = compact ? 12 : 24;
     GAP = compact ? 6 : 10;
