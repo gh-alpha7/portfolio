@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Subham Singh · Developer</title>
-  <meta name="description" content="Subham Kumar Singh — backend-focused developer. Experience at Samsung and Microland across C, Node.js, React and Python." />
+  <meta name="description" content="Subham Kumar Singh, backend engineer at Cashfree Payments. Go, Java, Spring Boot and Node.js; previously Samsung and Microland." />
   <meta name="theme-color" content="#0b0d10" />
   <meta property="og:title" content="Subham Singh · Developer" />
-  <meta property="og:description" content="Backend-focused developer. Break a brick to explore my resume." />
+  <meta property="og:description" content="Backend engineer at Cashfree Payments. Break a brick to explore my resume." />
   <meta property="og:image" content="assets/s.png" />
   <link rel="icon" href="assets/s.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -46,12 +46,17 @@
           <span class="grad">developer.</span>
         </h1>
         <p class="lede">
-          Backend-focused engineer, currently at Cashfree Payments. Before that I shipped router APIs
-          in C at Samsung and anomaly-detection dashboards on the MERN stack at Microland.
+          Backend engineer at <strong>Cashfree Payments</strong>. I build dependable services in
+          Go, Java and Node.js, and have shipped router APIs at Samsung and monitoring dashboards at Microland.
         </p>
+        <ul class="hero-facts mono" aria-label="At a glance">
+          <li><span>now</span>Cashfree Payments</li>
+          <li><span>before</span>Samsung · Microland</li>
+          <li><span>stack</span>Go · Java · Node.js</li>
+        </ul>
         <div class="cta">
           <a class="btn btn-solid" href="https://github.com/gh-alpha7/tictac/raw/master/Subham's%20Resume.pdf">Download resume</a>
-          <a class="btn" href="#experience">Read it here</a>
+          <a class="btn" href="#experience">View experience</a>
         </div>
         <ul class="socials" aria-label="Elsewhere">
           <li><a href="https://www.linkedin.com/in/subham-kumar-singh-853728108/" aria-label="LinkedIn">
@@ -101,28 +106,37 @@
       </header>
       <ol class="timeline">
         <li>
-          <div class="tl-meta mono">Current</div>
-          <h3>Cashfree Payments <span class="muted">· Fintech</span></h3>
-          <p>Building backend systems for Cashfree's payments platform.</p>
-          <ul class="tags"><li>Payments</li><li>Backend</li></ul>
+          <div class="tl-meta mono">Current · Full-time</div>
+          <h3>Cashfree Payments <span class="muted">· Backend engineering</span></h3>
+          <p>Building and running backend services for Cashfree's payments platform.</p>
+          <ul class="tags"><li>Payments</li><li>Backend</li><li>Fintech</li></ul>
         </li>
         <li>
           <div class="tl-meta mono">Full-time</div>
           <h3>Samsung <span class="muted">· Connectivity-AI</span></h3>
-          <p>Built Router Device Manager APIs in C. Wrote GTest suites to drive code optimisation and used FastCGI to expose a gateway interface for the router APIs.</p>
-          <ul class="tags"><li>C</li><li>GTest</li><li>FastCGI</li><li>OpenWrt</li></ul>
+          <p>Built the device-management layer for home routers.</p>
+          <ul class="tl-points">
+            <li>Wrote the Router Device Manager APIs in C on OpenWrt.</li>
+            <li>Exposed them to the rest of the stack through a FastCGI gateway.</li>
+            <li>Used GTest suites to profile and tighten the code.</li>
+          </ul>
+          <ul class="tags"><li>C</li><li>OpenWrt</li><li>FastCGI</li><li>GTest</li></ul>
         </li>
         <li>
           <div class="tl-meta mono">Full-time</div>
           <h3>Microland <span class="muted">· Anomaly detection</span></h3>
-          <p>Built an anomaly-detection product on the MERN stack. Collected system logs and configs through .NET APIs and built dashboards with d3.js, p5.js and Chart.js, using Redux for state.</p>
-          <ul class="tags"><li>MongoDB</li><li>Express</li><li>React</li><li>Node</li><li>d3.js</li><li>Redux</li></ul>
+          <p>Built an anomaly-detection product for IT infrastructure, end to end on the MERN stack.</p>
+          <ul class="tl-points">
+            <li>Collected system logs and configuration data through .NET APIs.</li>
+            <li>Turned it into live dashboards with d3.js, p5.js and Chart.js, with Redux managing state.</li>
+          </ul>
+          <ul class="tags"><li>MongoDB</li><li>Express</li><li>React</li><li>Node.js</li><li>d3.js</li><li>Redux</li></ul>
         </li>
         <li>
           <div class="tl-meta mono">Internship</div>
           <h3>Microland <span class="muted">· Conversational AI</span></h3>
-          <p>Automated IT-management services around the ticketing tool with Amazon Lex and Alexa.</p>
-          <ul class="tags"><li>Amazon Lex</li><li>Alexa</li></ul>
+          <p>Built voice and chat bots on Amazon Lex and Alexa that automated IT-service requests in the ticketing tool.</p>
+          <ul class="tags"><li>Amazon Lex</li><li>Alexa</li><li>Automation</li></ul>
         </li>
       </ol>
     </section>
@@ -163,19 +177,19 @@
         <p class="mono section-num">03</p>
         <h2>Skills</h2>
       </header>
-      <p class="section-lede">Mostly backend work, plus full-stack projects on MERN, Android and Vue.js.</p>
+      <p class="section-lede">Backend services first, with React and React Native when a product needs a front end.</p>
       <div class="skill-groups">
         <div>
           <h3 class="mono">languages</h3>
-          <ul class="chips"><li>JavaScript</li><li>C</li><li>C++</li><li>Python</li><li>Shell</li></ul>
+          <ul class="chips"><li>Go</li><li>Java</li><li>JavaScript</li><li>C</li><li>C++</li><li>Python</li><li>Shell</li></ul>
         </div>
         <div>
           <h3 class="mono">frameworks</h3>
-          <ul class="chips"><li>Node.js</li><li>React</li><li>Redux</li><li>React Native</li><li>Vue.js</li></ul>
+          <ul class="chips"><li>Spring Boot</li><li>Node.js</li><li>React</li><li>React Native</li></ul>
         </div>
         <div>
           <h3 class="mono">systems</h3>
-          <ul class="chips"><li>OpenWrt</li><li>FastCGI</li><li>GTest</li><li>MongoDB</li></ul>
+          <ul class="chips"><li>MySQL</li><li>Redis</li><li>MongoDB</li><li>OpenWrt</li></ul>
         </div>
       </div>
     </section>
@@ -209,6 +223,6 @@
     <p class="mono muted">© <span id="year">2026</span> Subham Singh</p>
   </footer>
 
-  <script src="main.js?v=6"></script>
+  <script src="main.js?v=7"></script>
 </body>
 </html>
