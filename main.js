@@ -54,10 +54,10 @@
   };
 
   var SECTIONS = {
-    EXPERIENCE: { id: "experience", title: "Experience", text: "Samsung (Connectivity-AI) and Microland: C router APIs, MERN dashboards and conversational AI." },
+    EXPERIENCE: { id: "experience", title: "Experience", text: "Now at Cashfree Payments. Before that: Samsung (Connectivity-AI) and Microland, working on C router APIs, MERN dashboards and conversational AI." },
     INTERESTS:  { id: "interests",  title: "Interests",  text: "Physics, singing, sketching, gaming, and cracking codes and ciphers." },
     EDUCATION:  { id: "education",  title: "Education",  text: "B.E. in Biotechnology from BIT Mesra, Ranchi." },
-    PROJECTS:   { id: "projects",   title: "Projects",   text: "AngelList Apply automation, the Parkit app, and an ML ticket classifier." },
+    PROJECTS:   { id: "projects",   title: "Projects",   text: "chess-video: turns chess PGN files into Instagram-ready 1080×1920 MP4 reels, right in the browser." },
     SKILLS:     { id: "skills",     title: "Skills",     text: "Backend first: Node.js, C/C++, Python, React, Redux, OpenWrt and FastCGI." }
   };
   // [row, col] -> label, matching the original layout
